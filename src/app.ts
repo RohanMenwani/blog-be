@@ -1,5 +1,7 @@
 import express, { Application } from 'express';
 import cors from 'cors';
+import { errorHandler } from './middlewares/errorHandler';
+import { notFound } from './middlewares/notFound';
 
 const app: Application = express();
 
@@ -7,8 +9,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
     res.status(200).json({ status: 'ok', message: 'Server is running' });
 });
+
+app.use(notFound);
+
+app.use(errorHandler);
 
 export default app;
