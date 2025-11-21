@@ -2,6 +2,7 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import { errorHandler } from './middlewares/errorHandler';
 import { notFound } from './middlewares/notFound';
+import postRoutes from './routes/postRoutes';
 
 const app: Application = express();
 
@@ -12,6 +13,8 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/health', (_req, res) => {
     res.status(200).json({ status: 'ok', message: 'Server is running' });
 });
+
+app.use('/api/posts', postRoutes);
 
 app.use(notFound);
 
