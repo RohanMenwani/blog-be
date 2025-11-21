@@ -3,6 +3,7 @@ import cors from 'cors';
 import { errorHandler } from './middlewares/errorHandler';
 import { notFound } from './middlewares/notFound';
 import postRoutes from './routes/postRoutes';
+import commentRoutes from './routes/commentRoutes';
 
 const app: Application = express();
 
@@ -15,6 +16,7 @@ app.get('/health', (_req, res) => {
 });
 
 app.use('/api/posts', postRoutes);
+app.use('/api/comments', commentRoutes);
 
 app.use(notFound);
 
