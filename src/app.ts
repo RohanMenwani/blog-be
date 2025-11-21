@@ -4,6 +4,7 @@ import { errorHandler } from './middlewares/errorHandler';
 import { notFound } from './middlewares/notFound';
 import postRoutes from './routes/postRoutes';
 import commentRoutes from './routes/commentRoutes';
+import ratingRoutes from './routes/ratingRoutes';
 
 const app: Application = express();
 
@@ -17,6 +18,7 @@ app.get('/health', (_req, res) => {
 
 app.use('/api/posts', postRoutes);
 app.use('/api/comments', commentRoutes);
+app.use('/api/ratings', ratingRoutes);
 
 app.use(notFound);
 
